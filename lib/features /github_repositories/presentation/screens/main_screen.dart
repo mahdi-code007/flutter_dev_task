@@ -30,7 +30,7 @@ class MainScreen extends StatelessWidget {
           if (state is LoadingReposState) {
             return const LoadingWidget();
           } else if (state is LoadedReposState) {
-            return ReposListWidget(repos: state.reposList,);
+            return ReposListWidget(repos: state.reposList);
           } else if (state is ErrorReposState) {
             return MessageDisplayWidget(message: state.message);
           }

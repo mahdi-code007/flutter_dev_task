@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dev_task/features%20/github_repositories/data/models/github_repositories_model.dart';
 import 'package:flutter_dev_task/features%20/github_repositories/data/repositories/github_repositories.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/strings/failures.dart';
@@ -43,6 +44,12 @@ class GithubReposCubit extends Cubit<GithubReposState> {
         return OFFLINE_FAILURE_MESSAGE;
       default:
         return "Unexpected Error , Please try again later .";
+    }
+  }
+
+  Future<void> launchUrlInBrowser({required Uri url}) async {
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
   }
 }
